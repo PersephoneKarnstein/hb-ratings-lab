@@ -7,7 +7,7 @@ from model import User, Movie, Rating
 
 from model import connect_to_db, db
 from server import app
-import datetime
+from datetime import datetime as dt
 
 def load_users():
     """Load users from u.user into database."""
@@ -20,7 +20,7 @@ def load_users():
 
     # Read u.user file and insert data
     for row in open("seed_data/u.user"):
-        row = row.rstrip()
+        row = row.strip()
         user_id, age, gender, occupation, zipcode = row.split("|")
 
         user = User(user_id=user_id,
@@ -42,10 +42,10 @@ def load_movies():
     Movie.query.delete()
 
     for row in open("seed_data/u.item"):
-        row = row.rstrip()
-        movie_id, title, released_at, imdb_url = row.split("|")[:4]
+        row = row.strip()
+        movie_id, title, released_at, blank, imdb_url = row.split("|")[:5]
         if released_at:
-            released_at = datetime.datetime.strptime(released_at, "%d-%b-%Y")
+            released_at = dt.strptime(released_at, "%d-%b-%Y")
         else: released_at = None
        
         title = " (".join(title.split(" (")[:-1])
@@ -65,12 +65,12 @@ def load_ratings():
     Rating.query.delete()
 
     for row in open("seed_data/u.data"):
-        row = row.rstrip()
+        row = row.strip()
         user_id, movie_id, score, timestamp = row.split()
         rating = Rating(movie_id=int(movie_id),
                         user_id=int(user_id),
                         score=int(score),
-                        timestamp=int(timestamp))
+                        timestamp=dt.utcfromtimestamp(int(timestamp)))
         db.session.add(rating)
     db.session.commit()
 
