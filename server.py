@@ -2,11 +2,12 @@
 
 from jinja2 import StrictUndefined
 
-from flask import Flask
+from flask import Flask, render_template, redirect, request, flash, session
 from flask_debugtoolbar import DebugToolbarExtension
 
-from model import connect_to_db, db
+from model import * #User, Rating, Movie, connect_to_db, db
 
+from sqlalchemy.orm.exc import NoResultFound
 
 app = Flask(__name__)
 
@@ -23,6 +24,32 @@ app.jinja_env.undefined = StrictUndefined
 def index():
     """Homepage."""
     return "<html><body>Placeholder for the homepage.</body></html>"
+
+
+@app.route("/users")
+def user_list():
+    """show a list of users"""
+
+    users = User.query.all()
+    return render_template("user_list.html", users=users)
+
+
+@app.route("/receive-email")
+def receive_email():
+
+    return render_template("receive-email.html")
+
+@app.route("/check-email", methods=['POST'])
+def check_email():
+    email = request.form.get("email", "Error")
+    print(email)
+    try:
+        user_with_email = db.session.query(User).filter_by(email = email).one() #at most we shoule find one person with this email
+        print(user_with_email)
+    except NoResultFound:
+        #this just means that we don't have that user registered yet
+    except Exception:
+        raise "There is more than one user registered with that email!!"
 
 
 if __name__ == "__main__":

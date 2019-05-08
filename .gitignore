@@ -1,3 +1,4 @@
 env
 *.pyc
 secrets.txt
+__pycache__
