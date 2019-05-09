@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<form action="/check-email" method="POST" id="email-check">
+    <p>Please enter your email below.</p>
+    <input type="text" name="email" id="email">
+    <input type="submit" name="submit" id="submitButton">
+</form>
+
+<script type="text/javascript">
+
+$("#email-check").on('submit', function (event) {
+    console.log("It do a thing");
+    event.preventDefault();
+
+    const emailInput = {'email':$("#email").val()};
+    const email = $("#email").val()
+    // localStorage.setItem("email", $("#email").val());
+    console.log(email)
+    // send the email we got to /check-email, which will check if
+    // we already have that email registered
+    $.post("/check-email", emailInput, function (testResponse) {
+        const emailExists = (testResponse.exists == 'true');
+        
+        if ( emailExists ) { //testResponse.exists 
+            //should be true or false.
+            //
+            //if /check-email retuns true:
+            confirm( testResponse.alert );
+
+            $("form").load("/login form", () => {
+
+                console.log("loaded signup page");
+                $("#email").val(email)
+            });
+
+        } else {
+            confirm( testResponse.alert );
+
+            $("form").load("/sign-up form", () => {
+
+                console.log("loaded signup page");
+                $("#email").val(email)
+           });
+
+        }
+        // ${testResponse.alert}
+    });
+
+    /* Act on the event */
+});
+
+
+
+</script>
+
+
+{% endblock %}

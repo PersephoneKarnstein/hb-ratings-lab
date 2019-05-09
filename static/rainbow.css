@@ -1,0 +1,21 @@
+.moving-rainbow {
+    display: flex;
+    width: 4em;
+    background-image: linear-gradient(to left, rgba(255,43,49,1) 0%, rgba(254,207,42,1) 20%, rgba(78,253,35,1) 40%, rgba(29,250,253,1) 60%, rgba(253,98,238,1) 80%, rgba(255,43,49,1) 100%);
+    background-position-x: 0em;
+    background-position-y: 0px;
+    background-repeat: repeat;
+    color: transparent;
+    background-clip: content-box;
+    -webkit-background-clip: text;
+    font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: 400%;
+    font-style: bolder;
+    font-variant: small-caps;
+}
+
+/*.moving-rainbow {
+  background: -webkit-linear-gradient(to right, green, yellowgreen 33%, yellow 66%, gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}*/
