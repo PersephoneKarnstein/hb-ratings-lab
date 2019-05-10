@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
-{% block content %}
 
-<h1>Ratings</h1>
+{% block content %}
 
 <h2>Movies</h2>
 <p><a href="/movies">View all movies</a></p>
@@ -9,5 +8,16 @@
 <h2>Users</h2>
 <p><a href="/users">View all users</a></p>
 
+
+<br><br><br><br>
+<button class="moving-rainbow btn logout">Log Out</button>
+
+<script type="text/javascript">
+    $(".logout").on("click", () => {
+        window.location.href = "/logout"
+
+    })
+
+</script>
 
 {% endblock %}

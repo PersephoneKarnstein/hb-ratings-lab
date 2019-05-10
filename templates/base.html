@@ -5,31 +5,43 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/rainbow.css"  />
 </head>
-<body>
 
-    <h1 class="moving-rainbow">Ratings</h1>
+<body>
+    <h1 class="moving-rainbow header">Ratings</h1>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <a class="flashed-msg">{{ message }}</a>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
     <script type="text/javascript">
         $(document).ready(function endless(elem) {
 
-            // let gradientBackstop = 0;
+            $(".moving-rainbow").animate({
+                "background-position-x": "16em"
+                },
 
-            $(".moving-rainbow").animate({"background-position-x": "16em"},
                 8000, "linear", function () {
-                    $(".moving-rainbow").css({"background-position-x": "0em"});
-                        endless(elem);
+                    $(".moving-rainbow").css({
+                        "background-position-x": "0em"
                         });
-            // setInterval(() => {
-            //     gradientBackstop += 1;
-            //     let gradientProperty = `${gradientBackstop}px`;
-            //     $(".moving-rainbow").css('background-position-x', gradientProperty);
-
-            // }, 1000);
+                    endless(elem);
+                    });
         });
 
+        $(".flashed-msg").each( function () {
+            alert( $( this ).text() )
+        });
+
+        $(".flashed-msg").remove();
     </script>
 
     <hr> {# a horizontal line #}
-       
+
+
         {% block content %}
         put your content here!
         {% endblock %}

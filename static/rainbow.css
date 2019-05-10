@@ -1,12 +1,16 @@
 .moving-rainbow {
-    display: flex;
-    width: 4em;
+    
     background-image: linear-gradient(to left, rgba(255,43,49,1) 0%, rgba(254,207,42,1) 20%, rgba(78,253,35,1) 40%, rgba(29,250,253,1) 60%, rgba(253,98,238,1) 80%, rgba(255,43,49,1) 100%);
     background-position-x: 0em;
     background-position-y: 0px;
     background-repeat: repeat;
     color: transparent;
     background-clip: content-box;
+}
+
+.header{
+    display: flex;
+    width: 4em;
     -webkit-background-clip: text;
     font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
     font-size: 400%;
@@ -14,8 +18,26 @@
     font-variant: small-caps;
 }
 
-/*.moving-rainbow {
-  background: -webkit-linear-gradient(to right, green, yellowgreen 33%, yellow 66%, gold);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}*/
+.btn {
+    display: flex;
+    border: 1px solid #ccc!important;
+    border-radius: 16px;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    border-bottom-left-radius: 16px;
+    background: linear-gradient(to left, rgba(176,254,255,1) 0%, rgba(255,199,241,1) 20%, rgba(255,255,255,1) 40%, rgba(255,199,241,1) 60%, rgba(176,254,255,1) 80%);
+    /*padding: 14px 28px;*/
+    cursor: pointer;
+    display: inline-block;
+}
+
+.logout {
+    width: 8em;
+    color: white;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: white;
+    font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    font-style: bolder;
+    font-size: 16px;
+}

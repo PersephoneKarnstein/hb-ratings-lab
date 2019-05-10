@@ -20,7 +20,8 @@ $("#email-check").on('submit', function (event) {
     // send the email we got to /check-email, which will check if
     // we already have that email registered
     $.post("/check-email", emailInput, function (testResponse) {
-        const emailExists = (testResponse.exists == 'true');
+        const emailExists = testResponse.exists;
+        console.log(testResponse.exists, emailExists)
         
         if ( emailExists ) { //testResponse.exists 
             //should be true or false.
@@ -30,7 +31,7 @@ $("#email-check").on('submit', function (event) {
 
             $("form").load("/login form", () => {
 
-                console.log("loaded signup page");
+                console.log("loaded login page");
                 $("#email").val(email)
             });
 

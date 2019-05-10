@@ -1,10 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
 
-<form action="/" method="POST" id="signup">
+<form action="/process-login" method="POST" id="signup">
     <p>Please choose a login and password.</p>
-    <input type="text" name="email" id="email" value=`${email}`><br>
-    <input type="text" name="password", id="password"><br>
+    <input type="hidden" name="attempt-type" value="signup">
+    <p>email</p>
+    <input type="text" name="email" id="email" value={{ session["email"] }}><br><br>
+    <p>password</p>
+    <input type="text" name="password", id="password"><br><br>
+    <p>age (years)</p>
+    <input type="text" name="age", id="age"><br><br>
+    <p>zipcode</p>
+    <input type="text" name="zipcode", id="zipcode"><br><br>
+
     <input type="submit" name="submit" id="submitButton">
 </form>
 
